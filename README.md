@@ -1,187 +1,235 @@
-# fraudshield-ai-credit-card-fraud-detection-
-End-to-end ML system for credit card fraud detection using Scikit-learn, Random Forest, imbalanced-data evaluation, probability-based risk scoring, and Streamlit.
-🛡️ FraudShield AI
+# 🛡️ FraudShield AI
 
-Credit Card Fraud Detection & Transaction Risk Analysis
+> **Fast credit-card fraud risk assessment powered by machine learning.**
 
-An end-to-end machine learning system for detecting fraudulent credit-card transaction patterns using Scikit-learn, Random Forest, imbalanced-data evaluation, and Streamlit.
+FraudShield AI is an end-to-end machine-learning project that analyzes credit-card transaction patterns and estimates the probability of fraudulent activity.
 
+The project combines **data analysis, imbalanced-classification techniques, model comparison, Random Forest, and an interactive Streamlit application** into one practical fraud-detection system.
 
+---
 
+## 🚀 Project Overview
 
+Credit-card fraud detection is a challenging machine-learning problem because fraudulent transactions are extremely rare compared with legitimate transactions.
 
+FraudShield AI addresses this problem by:
 
+- Analyzing a highly imbalanced fraud dataset
+- Comparing multiple machine-learning models
+- Evaluating models using fraud-focused metrics
+- Selecting the best-performing model
+- Saving the trained model for deployment
+- Providing a fast Streamlit interface for transaction assessment
 
-🚨 Why FraudShield AI?
+### Core Pipeline
 
-Credit-card fraud detection is not a normal binary-classification problem.
-
-The dataset used in this project contains 284,807 transactions, of which only 492 are fraudulent — approximately 0.172% of all transactions.
-
-That extreme class imbalance makes conventional accuracy a poor standalone indicator of model quality.
-
-FraudShield AI focuses on the metrics that matter more for fraud detection:
-
-Precision · Recall · F1 Score · ROC-AUC
-
-The project follows an end-to-end workflow:
-
-Raw Transaction Data
-        ↓
-Data Preparation
-        ↓
+```text
+Raw Dataset
+     │
+     ▼
+Data Cleaning
+     │
+     ▼
+Exploratory Data Analysis
+     │
+     ▼
 Train / Test Split
-        ↓
+     │
+     ▼
 Preprocessing
-        ↓
-Class-Imbalance Experiments
-        ↓
-Multiple Model Evaluation
-        ↓
-Random Forest Selection
-        ↓
-Model Persistence
-        ↓
-Streamlit Application
-        ↓
-Transaction Risk Assessment
-
-✨ Features
-
-💳 Transaction Risk Analyzer
-
-Analyze a real transaction from the dataset using the complete model feature vector.
-
-The application keeps the technical PCA features away from the normal user interface while passing the required features to the trained model internally.
-
-🎲 Transaction Explorer
-
-Select a transaction or generate a random transaction from the dataset and run it through the trained classifier.
-
-📊 Fraud Intelligence Dashboard
-
-Explore:
-
-Total transactions
-
-Fraud transactions
-
-Legitimate transactions
-
-Fraud rate
-
-Transaction amount statistics
-
-Class distribution
-
-🤖 Model Comparison
-
-Evaluate multiple classification approaches before selecting the final model.
-
-Models evaluated include:
-
+     │
+     ├── Median Imputation
+     └── StandardScaler
+     │
+     ▼
+Model Comparison
+     │
+     ├── Random Forest
+     ├── Balanced Random Forest
+     ├── SMOTE + Random Forest
+     ├── KNN
+     ├── Logistic Regression
+     ├── Gradient Boosting
+     └── Naive Bayes
+     │
+     ▼
+Best Model Selection
+     │
+     ▼
 Random Forest
+     │
+     ▼
+Streamlit Application
+     │
+     ▼
+Fraud Probability + Risk Classification
+```
 
-Random Forest (Balanced)
+---
 
-SMOTE + Random Forest
+# ✨ Features
 
-KNN
+## 🔎 Quick Transaction Scan
 
-Logistic Regression
+Select a transaction using its ID and let FraudShield AI analyze it.
 
-Gradient Boosting
-
-SMOTE + Logistic Regression
-
-Logistic Regression (Balanced)
-
-Naive Bayes
-
-🔬 Technical Transparency
-
-The application explains:
-
-Model feature order
-
-Time
-
-Amount
-
-V1–V28
-
-Class labels
-
-Model metrics
-
-Dataset structure
-
-🛡️ Risk Classification
-
-The application converts model fraud probability into an easy-to-understand risk level:
-
+```text
+Transaction ID
+      ↓
+Transaction Data
+      ↓
+Machine Learning Model
+      ↓
 Fraud Probability
+      ↓
+Risk Classification
+```
 
-Risk
+---
 
-< 25%
+## 🎲 Random Transaction Testing
 
-🟢 LOW
+Generate a random transaction instantly to experiment with the model.
 
-25–49%
+Useful for:
 
-🟡 MEDIUM
+- Demonstrations
+- Testing
+- Model exploration
+- Portfolio presentations
 
-50–74%
+---
 
-🟠 HIGH
+## 🧠 Probability-Based Detection
 
-≥ 75%
+Instead of simply returning:
 
-🔴 CRITICAL
+```text
+Fraud
+```
 
-These application thresholds are presentation thresholds, not banking or regulatory standards.
+or:
 
-🧠 Machine Learning
+```text
+Legitimate
+```
 
-Dataset
+FraudShield AI also provides the model's estimated probability:
 
-FraudShield AI uses the well-known Credit Card Fraud Detection dataset containing transactions made by European cardholders in September 2013.
+```text
+Fraud Probability: 0.03%
+Legitimate Probability: 99.97%
+```
 
-Dataset characteristics:
+This makes the result easier to understand.
 
-Property
+---
 
-Value
+## ⚡ Fast Inference
 
-Total transactions
+The application is optimized for a responsive Streamlit experience.
 
-284,807
+It uses:
 
-Fraudulent transactions
+- `st.cache_resource`
+- `st.cache_data`
+- Cached model loading
+- Cached dataset loading
+- Cached repeated predictions
+- Lightweight transaction selection
+- No massive transaction dropdown
+- No model retraining during inference
 
-492
+---
 
-Legitimate transactions
+## 📊 Dataset Insights
 
-284,315
+The application provides a simple dataset overview including:
 
-Fraud rate
+- Total transactions
+- Fraud transactions
+- Legitimate transactions
+- Fraud percentage
+- Transaction amount statistics
+- Class distribution
 
-~0.172%
+---
 
-Input features
+## 🤖 Model Performance
 
-30
+FraudShield AI displays:
 
-Target
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+- AUPRC when available
 
+---
+
+## 🔬 Technical Transparency
+
+Advanced model inputs can be viewed through the technical section.
+
+The model uses:
+
+```text
+Time
+V1
+V2
+V3
+...
+V28
+Amount
+```
+
+The target variable is:
+
+```text
 Class
+```
 
-Feature structure
+where:
+
+```text
+0 = Legitimate
+1 = Fraud
+```
+
+---
+
+# 📊 Dataset
+
+FraudShield AI uses the **Credit Card Fraud Detection** dataset.
+
+The dataset contains transactions made by European cardholders during September 2013.
+
+### Dataset Statistics
+
+| Property | Value |
+|---|---:|
+| Total Transactions | 284,807 |
+| Fraud Transactions | 492 |
+| Legitimate Transactions | 284,315 |
+| Fraud Rate | ~0.172% |
+| Input Features | 30 |
+| Target Feature | `Class` |
+
+The dataset is extremely imbalanced.
+
+```text
+Legitimate ≈ 99.828%
+Fraud       ≈ 0.172%
+```
+
+---
+
+# 🧬 Dataset Features
 
 The dataset contains:
 
+```text
 Time
 V1
 V2
@@ -190,249 +238,271 @@ V3
 V28
 Amount
 Class
+```
 
-Class is the target:
+---
 
-0 → Legitimate
-1 → Fraud
+## ⏱️ Time
 
-What are V1–V28?
+`Time` represents the number of seconds elapsed between a transaction and the first transaction in the dataset.
 
-V1 through V28 are PCA-transformed principal components.
+It is **not a clock time**.
 
-The original transaction features were not provided because of confidentiality constraints.
+For example:
 
-Therefore, this project deliberately does not invent meanings such as:
+```text
+120 seconds
+≈ 2 minutes
+≈ 0.03 hours
+```
 
+---
+
+## 💰 Amount
+
+`Amount` represents the transaction amount recorded in the dataset.
+
+The original dataset does not provide a currency specification.
+
+---
+
+## 🧩 V1–V28
+
+`V1` through `V28` are anonymized principal components obtained through PCA transformation.
+
+Their original meanings are not publicly provided because of confidentiality.
+
+Therefore, FraudShield AI does **not** assign unsupported meanings such as:
+
+```text
 V1 = income
-V2 = merchant risk
-V3 = location
+V2 = location
+V3 = merchant risk
+```
 
-Those interpretations would not be supported by the dataset.
+Instead, they are treated strictly as numerical model features.
 
-Instead, FraudShield AI treats them correctly as anonymized numerical model features.
+---
 
-Time
+# 🧠 Machine Learning Pipeline
 
-Time represents the number of seconds elapsed between a transaction and the first transaction in the dataset.
+The final model uses a preprocessing and classification pipeline.
 
-It is not a clock timestamp.
+```text
+Input Features
+      │
+      ▼
+Median Imputation
+      │
+      ▼
+StandardScaler
+      │
+      ▼
+Random Forest
+      │
+      ▼
+Prediction
+      │
+      ├── Class
+      └── Probability
+```
 
-Amount
+### Model Configuration
 
-Amount represents the transaction amount recorded in the dataset.
+```text
+Algorithm: Random Forest
+Number of Trees: 150
+```
 
-🏆 Model Performance
+The trained model is stored as:
 
-The following results were obtained during model evaluation:
+```text
+models/fraud_model.pkl
+```
 
+Metadata is stored as:
+
+```text
+models/model_metadata.pkl
+```
+
+---
+
+# 🏆 Model Comparison
+
+Multiple models were tested before selecting the final model.
+
+| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| **Random Forest** | **99.95%** | **95.12%** | **79.59%** | **86.67%** | **91.52%** |
+| Random Forest (Balanced) | 99.95% | 97.44% | 77.55% | 86.36% | 91.58% |
+| SMOTE + Random Forest | 99.94% | 92.86% | 79.59% | 85.71% | **97.66%** |
+| KNN | 99.93% | 86.67% | 79.59% | 82.98% | 90.80% |
+| Logistic Regression | 99.85% | 74.19% | 46.94% | 57.50% | 92.30% |
+| Gradient Boosting | 99.85% | 69.70% | 46.94% | 56.10% | 63.21% |
+| SMOTE + Logistic Regression | 98.21% | 8.71% | 79.59% | 15.69% | 93.49% |
+| Logistic Regression (Balanced) | 98.18% | 8.57% | 79.59% | 15.48% | 93.73% |
+| Naive Bayes | 97.81% | 7.21% | 79.59% | 13.22% | 92.29% |
+
+---
+
+# 🥇 Why Random Forest?
+
+The final Random Forest provided a strong overall balance between:
+
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
+- Accuracy
+
+The model achieved:
+
+```text
+Accuracy   → 99.95%
+Precision  → 95.12%
+Recall     → 79.59%
+F1 Score   → 86.67%
+ROC-AUC    → 91.52%
+```
+
+Although the SMOTE + Random Forest experiment achieved a higher ROC-AUC, the original Random Forest provided a strong overall balance and was selected as the final application model.
+
+---
+
+# ⚠️ Why Accuracy Is Not Enough
+
+Fraud detection is a highly imbalanced classification problem.
+
+Only approximately:
+
+```text
+0.172%
+```
+
+of transactions are fraudulent.
+
+Because of this, a model can achieve extremely high accuracy while still failing to detect important fraudulent transactions.
+
+Therefore, FraudShield AI focuses on:
+
+### Precision
+
+> Of the transactions predicted as fraud, how many were actually fraud?
+
+### Recall
+
+> Of the actual fraudulent transactions, how many were detected?
+
+### F1 Score
+
+> Harmonic balance between precision and recall.
+
+### ROC-AUC
+
+> How effectively the model separates legitimate and fraudulent transactions across classification thresholds.
+
+### AUPRC
+
+> Area Under the Precision-Recall Curve.
+
+For highly imbalanced fraud detection, AUPRC is particularly useful.
+
+---
+
+# 🖥️ Application Interface
+
+FraudShield AI contains three main sections:
+
+```text
+┌────────────────────────────────────────┐
+│          🛡️ FraudShield AI             │
+│                                        │
+│       Scan   Insights   Model          │
+└────────────────────────────────────────┘
+```
+
+---
+
+## 1. 🔎 Scan
+
+The primary feature.
+
+```text
+Transaction ID
+       ↓
+Transaction Details
+       ↓
+🔍 Scan Transaction
+       ↓
+ML Prediction
+       ↓
+Fraud Probability
+       ↓
+Risk Classification
+```
+
+Example:
+
+```text
+🟢 LOW FRAUD RISK
+
+0.03%
+
+Estimated probability of fraud
+
+Fraud Probability        0.03%
+Legitimate Probability   99.97%
+Prediction               Legitimate
+```
+
+---
+
+## 2. 📊 Insights
+
+Provides a quick overview of the dataset.
+
+```text
+Total Transactions
+Fraud Transactions
+Fraud Rate
+Average Amount
+Class Distribution
+```
+
+---
+
+## 3. 🤖 Model
+
+Displays the selected model and evaluation metrics.
+
+```text
 Model
-
 Accuracy
-
 Precision
-
 Recall
-
 F1 Score
-
 ROC-AUC
-
-Random Forest
-
-99.95%
-
-95.12%
-
-79.59%
-
-86.67%
-
-91.52%
-
-Random Forest (Balanced)
-
-99.95%
-
-97.44%
-
-77.55%
-
-86.36%
-
-91.58%
-
-SMOTE + Random Forest
-
-99.94%
-
-92.86%
-
-79.59%
-
-85.71%
-
-97.66%
-
-KNN
-
-99.93%
-
-86.67%
-
-79.59%
-
-82.98%
-
-90.80%
-
-Logistic Regression
-
-99.85%
-
-74.19%
-
-46.94%
-
-57.50%
-
-92.30%
-
-Gradient Boosting
-
-99.85%
-
-69.70%
-
-46.94%
-
-56.10%
-
-63.21%
-
-SMOTE + Logistic Regression
-
-98.21%
-
-8.71%
-
-79.59%
-
-15.69%
-
-93.49%
-
-Logistic Regression (Balanced)
-
-98.18%
-
-8.57%
-
-79.59%
-
-15.48%
-
-93.73%
-
-Naive Bayes
-
-97.81%
-
-7.21%
-
-79.59%
-
-13.22%
-
-92.29%
-
-Selected model
-
-Random Forest
-
-Why?
-
-It provided a strong balance between:
-
-Precision
-
-Recall
-
-F1 Score
-
-ROC-AUC
-
-The final choice should not be interpreted from accuracy alone.
-
-An especially important observation from the experiments is that SMOTE + Random Forest achieved a higher ROC-AUC (97.66%), showing why model selection in an imbalanced fraud problem should consider the evaluation objective and decision threshold rather than simply selecting the highest accuracy.
-
-📌 Why Accuracy Can Be Misleading
-
-Imagine a dataset where almost every transaction is legitimate.
-
-A model that predicts:
-
-Every transaction → Legitimate
-
-could achieve extremely high accuracy while detecting almost no fraud.
-
-That is why FraudShield AI evaluates:
-
-Precision
-
-Of the transactions predicted as fraud, how many were actually fraud?
-
-Recall
-
-Of all actual fraudulent transactions, how many did the model detect?
-
-F1 Score
-
-Harmonic balance between precision and recall.
-
-ROC-AUC
-
-How well the model separates the two classes across classification thresholds.
-
 AUPRC
+```
 
-For highly imbalanced fraud datasets, Area Under the Precision-Recall Curve is especially valuable.
+It also shows the model pipeline:
 
-The original dataset description specifically recommends AUPRC because ordinary accuracy can be misleading under severe class imbalance.
+```text
+Median Imputation
+       ↓
+StandardScaler
+       ↓
+Random Forest
+       ↓
+Fraud Probability
+```
 
-🏗️ Project Architecture
+---
 
-FraudShield AI
-│
-├── Data
-│   └── Credit Card Transactions
-│
-├── Preprocessing
-│   ├── Feature preparation
-│   ├── Train/Test split
-│   └── Class-imbalance experiments
-│
-├── Model Evaluation
-│   ├── Random Forest
-│   ├── Balanced Random Forest
-│   ├── SMOTE + Random Forest
-│   ├── KNN
-│   ├── Logistic Regression
-│   ├── Gradient Boosting
-│   └── Naive Bayes
-│
-├── Final Model
-│   └── Random Forest
-│
-├── Persistence
-│   ├── fraud_model.pkl
-│   └── model_metadata.pkl
-│
-└── Application
-    └── Streamlit
+# 📁 Project Structure
 
-📁 Repository Structure
-
+```text
 fraudshield-ai-credit-card-fraud-detection/
 │
 ├── app.py
@@ -447,261 +517,416 @@ fraudshield-ai-credit-card-fraud-detection/
 │   ├── fraud_model.pkl
 │   └── model_metadata.pkl
 │
-└── assets/
-    └── screenshots/
-        ├── dashboard.png
-        ├── assessment.png
-        └── analytics.png
+└── notebook/
+    └── fraudshield_ai.ipynb
+```
 
-Keep large/private datasets and generated model artifacts out of GitHub when required by the dataset license or repository limits. The included .gitignore is intentionally conservative; adjust it according to what you intend to publish.
+---
 
-⚙️ Tech Stack
+# 🛠️ Tech Stack
 
-Technology
+| Technology | Purpose |
+|---|---|
+| Python | Core development |
+| Pandas | Data manipulation |
+| NumPy | Numerical computation |
+| Scikit-learn | Machine learning |
+| Joblib | Model serialization |
+| Streamlit | Web application |
+| Jupyter Notebook | Model experimentation |
+| Git | Version control |
+| GitHub | Repository & deployment |
 
-Purpose
+---
 
-Python
+# ⚙️ Installation
 
-Core development
+## 1. Clone Repository
 
-Pandas
-
-Data manipulation
-
-NumPy
-
-Numerical processing
-
-Scikit-learn
-
-ML models, preprocessing & evaluation
-
-Joblib
-
-Model persistence
-
-Matplotlib
-
-Evaluation visualizations
-
-Streamlit
-
-Interactive ML application
-
-Git & GitHub
-
-Version control & collaboration
-
-🚀 Run Locally
-
-1. Clone the repository
-
+```bash
 git clone https://github.com/Prateeksri1308/fraudshield-ai-credit-card-fraud-detection.git
+```
+
+```bash
 cd fraudshield-ai-credit-card-fraud-detection
+```
 
-2. Create a virtual environment
+---
 
-Windows
+## 2. Create Virtual Environment
 
+### Windows
+
+```bash
 python -m venv .venv
+```
+
+```bash
 .venv\Scripts\activate
+```
 
-macOS / Linux
+### macOS / Linux
 
+```bash
 python3 -m venv .venv
+```
+
+```bash
 source .venv/bin/activate
+```
 
-3. Install dependencies
+---
 
+## 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-4. Verify the project structure
+---
 
-Make sure the application can access:
+## 4. Start Application
 
-data/creditcard.csv
-models/fraud_model.pkl
-
-and, if used:
-
-models/model_metadata.pkl
-
-5. Start FraudShield AI
-
+```bash
 streamlit run app.py
+```
 
-The application will open in your browser.
+Then open:
 
-☁️ Streamlit Deployment
+```text
+http://localhost:8501
+```
 
-The application is designed to run as a Streamlit web application.
+---
 
-Typical deployment configuration:
+# ☁️ Deployment
+
+FraudShield AI can be deployed using Streamlit Community Cloud.
+
+### Main configuration
+
+```text
+Repository:
+fraudshield-ai-credit-card-fraud-detection
+
+Branch:
+main
 
 Main file:
 app.py
+```
 
-Install dependencies from:
+Dependencies are installed from:
 
+```text
 requirements.txt
+```
 
-Make sure required model/data artifacts are available to the deployed application and comply with the dataset's redistribution terms.
+Make sure the trained model files are available:
 
-🔐 Important Design Decision
+```text
+models/
+├── fraud_model.pkl
+└── model_metadata.pkl
+```
 
-FraudShield AI does not ask normal users to manually enter:
+---
 
+# ⚡ Performance Architecture
+
+The application was designed to avoid unnecessary computation during user interaction.
+
+### Model caching
+
+```python
+@st.cache_resource
+def load_model():
+    ...
+```
+
+The model is loaded once and reused.
+
+---
+
+### Dataset caching
+
+```python
+@st.cache_data
+def load_dataset():
+    ...
+```
+
+The dataset is loaded once and reused.
+
+---
+
+### Prediction caching
+
+Repeated scans of the same transaction can reuse the previous prediction.
+
+```text
+First Scan
+   ↓
+Model Inference
+   ↓
+Cache
+
+Same Transaction
+   ↓
+Cached Result
+   ↓
+Instant Response
+```
+
+---
+
+### Lightweight transaction selection
+
+Instead of rendering hundreds of thousands of transaction choices:
+
+```text
+❌ Massive dropdown
+```
+
+FraudShield AI uses:
+
+```text
+Transaction ID
+```
+
+which keeps the interface simple and responsive.
+
+---
+
+# 🔐 Model Input Design
+
+Users are intentionally **not required to enter V1–V28 manually**.
+
+The application internally retrieves the complete transaction:
+
+```text
+Time
 V1
 V2
-V3
 ...
 V28
+Amount
+```
 
-Why?
+and sends those features to the saved model.
 
-Because these variables are anonymized PCA components.
+The target:
 
-Instead, the application uses a complete transaction row from the dataset:
+```text
+Class
+```
 
-Time + V1–V28 + Amount
+is never sent to the model.
 
-and passes the correct feature vector to the trained model.
+---
 
-This prevents a misleading interface where users provide only Amount + Time while the model silently receives fabricated values for the remaining features.
+# 🧪 Example
 
-⚠️ Limitations
+Suppose a transaction has:
 
-This project is an educational machine-learning demonstration.
+```text
+Transaction ID: 15243
+Amount:         360.00
+Time:           120 seconds
+```
 
-It should not be treated as:
+FraudShield AI internally retrieves:
 
-A banking fraud prevention system
+```text
+Time
+V1
+V2
+...
+V28
+Amount
+```
 
-A production payment-security system
+Then:
 
-A financial decision engine
+```text
+              ┌─────────────────┐
+              │ Transaction     │
+              │ Feature Vector  │
+              └────────┬────────┘
+                       ↓
+              ┌─────────────────┐
+              │ Preprocessing   │
+              └────────┬────────┘
+                       ↓
+              ┌─────────────────┐
+              │ Random Forest   │
+              └────────┬────────┘
+                       ↓
+             ┌─────────┴─────────┐
+             ↓                   ↓
+       Prediction          Probability
+             ↓                   ↓
+       Legitimate              0.03%
+```
 
-A real-time fraud investigation platform
+---
 
-A replacement for bank/card-provider fraud controls
+# 🔮 Future Improvements
 
-The dataset is historical and contains anonymized PCA features.
+FraudShield AI can be extended with:
 
-Real-world fraud detection systems generally require additional information such as:
-
-Merchant context
-
-Device information
-
-Account history
-
-Geographic signals
-
-Transaction velocity
-
-Behavioral patterns
-
-Real-time streaming data
-
-Feedback from confirmed fraud cases
-
-Those signals are not available in this dataset.
-
-📚 Dataset & Research
-
-The dataset was collected through a research collaboration involving Worldline and the Machine Learning Group of ULB (Université Libre de Bruxelles).
-
-The dataset description recommends particular care when evaluating models because of its extreme class imbalance.
-
-Relevant research includes work by:
-
-Andrea Dal Pozzolo
-
-Olivier Caelen
-
-Reid A. Johnson
-
-Gianluca Bontempi
-
-Yann-Aël Le Borgne
-
-Fabrizio Carcillo
-
-Bertrand Lebichot
-
-See the original dataset source and associated research for the complete attribution and citation requirements.
-
-🧪 Future Improvements
-
-Potential next steps include:
-
-Precision-Recall curve visualization
-
-AUPRC-based model selection
-
-Probability calibration
-
-Threshold optimization
-
-Explainable AI with model-compatible feature attribution
-
-Cross-validation
-
-Time-aware validation
-
-Streaming transaction simulation
-
+```text
+Real-time transaction streams
+        ↓
 Transaction velocity features
+        ↓
+Merchant risk signals
+        ↓
+Device fingerprinting
+        ↓
+Behavioral analytics
+        ↓
+Explainable AI
+        ↓
+SHAP explanations
+        ↓
+Model monitoring
+        ↓
+Drift detection
+        ↓
+Production fraud API
+```
 
-Real-time monitoring
+Possible technical improvements:
 
-Model drift detection
+- [ ] Precision-Recall curve
+- [ ] AUPRC optimization
+- [ ] Probability calibration
+- [ ] Threshold optimization
+- [ ] SHAP explanations
+- [ ] Time-aware validation
+- [ ] Cross-validation
+- [ ] Model drift monitoring
+- [ ] Real-time inference API
+- [ ] Docker deployment
+- [ ] CI/CD pipeline
+- [ ] Experiment tracking
+- [ ] Production database integration
 
-Experiment tracking
+---
 
-CI/CD automated testing
+# 📚 Dataset Attribution
 
-Containerized deployment
+The dataset was collected and analyzed during a research collaboration involving:
 
-These are intentionally future improvements rather than claims about the current implementation.
+- Worldline
+- Machine Learning Group
+- Université Libre de Bruxelles (ULB)
 
-🎯 Project Objective
+The dataset and associated research should be cited according to the original dataset documentation.
 
-FraudShield AI was built to demonstrate an end-to-end machine-learning workflow for a difficult real-world classification problem:
+Important related research includes work by:
 
-How can machine learning identify a tiny number of fraudulent transactions hidden inside a massive number of legitimate transactions?
+- Andrea Dal Pozzolo
+- Olivier Caelen
+- Reid A. Johnson
+- Gianluca Bontempi
+- Yann-Aël Le Borgne
+- Fabrizio Carcillo
+- Bertrand Lebichot
 
-The project combines:
+---
 
-Data Analysis
-      +
+# ⚠️ Limitations
+
+This project uses a historical and anonymized dataset.
+
+The real-world fraud detection environment can contain many additional signals that are unavailable in this dataset.
+
+Examples include:
+
+```text
+Device
+Merchant
+Location
+Account history
+Transaction velocity
+User behavior
+IP information
+Authentication signals
+Real-time transaction history
+```
+
+These are **not represented** by the current dataset.
+
+---
+
+# ⚠️ Disclaimer
+
+> **FraudShield AI is an educational machine-learning demonstration.**
+
+It is not intended to function as:
+
+- A banking fraud-detection system
+- A payment-security platform
+- A financial decision engine
+- A fraud-investigation service
+- A transaction approval system
+
+Model predictions should **not** be used as the sole basis for real-world financial decisions.
+
+---
+
+# 👨‍💻 Author
+
+## Prateek Srivastava
+
+**AI/ML Engineer · Backend Developer · Cloud & DevOps**
+
+Building practical software and machine-learning systems focused on real-world problems.
+
+---
+
+# ⭐ Why This Project Matters
+
+FraudShield AI is not just a classification model.
+
+It demonstrates the complete machine-learning workflow:
+
+```text
+Problem
+  ↓
+Dataset
+  ↓
+EDA
+  ↓
+Data Cleaning
+  ↓
 Imbalanced Classification
-      +
-Model Benchmarking
-      +
-Random Forest
-      +
+  ↓
+Multiple Models
+  ↓
 Evaluation
-      +
+  ↓
+Model Selection
+  ↓
 Model Persistence
-      +
-Streamlit
-      =
-FraudShield AI
+  ↓
+Application Development
+  ↓
+Deployment
+```
 
-👨‍💻 Author
+That makes the project a practical demonstration of:
 
-Prateek Srivastava
+**Machine Learning + Data Science + Model Evaluation + Deployment + Software Engineering**
 
-Building projects around:
+---
 
-Machine Learning · Backend Development · AI/ML · Cloud · DevOps
+<p align="center">
 
-⭐ If you found this project useful
+### 🛡️ FraudShield AI
 
-Give the repository a ⭐ and feel free to explore the implementation.
+**Detect patterns. Estimate risk. Build smarter systems.**
 
-Disclaimer
-
-FraudShield AI is an educational machine-learning and cybersecurity-awareness demonstration. It is not a banking, financial, fraud-investigation, or transaction-approval system. Model predictions are estimates and should not be used as the sole basis for real-world financial decisions.
+</p>
